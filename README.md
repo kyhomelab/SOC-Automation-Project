@@ -9,4 +9,4 @@ Goal is to create a Wazuh Instance with SOAR Integration along with case managem
 
 
 Here is a diagram of the project
-<br> <img src="https://i.imgur.com/8N7arya.png" width="45%" height="45%"> <br>
+<br> <img src="https://i.imgur.com/JdbiEBI.png"> <br>
