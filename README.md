@@ -80,3 +80,5 @@ echo 'deb [signed-by=/usr/share/keyrings/strangebee-archive-keyring.gpg] https:/
 sudo apt-get update
 sudo apt-get install -y thehive
 ```
+<br>
+5. Going into **nano /etc/cassandra/cassandra.yaml**, Im changing * *listen_address, rpc_address, and seed_provider > seeds** all to the public ip of the server
