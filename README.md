@@ -93,6 +93,9 @@ systemctl stop cassandra.service
 rm -rf /var/lib/cassandra/*
 ```
 ```bash
+systemctl enable cassandra.service
+```
+```bash
 systemctl start cassandra.service
 ```
 <br>
@@ -105,5 +108,36 @@ nano /etc/elasticsearch/elasticsearch.yml
 ```bash
 systemctl start elasticsearch
 ```
+- Check to make sure both Cassandra and Elasticsearch are running
+```bash
+systemctl status elasticsearch
+```
+```bash
+systemctl status cassandra.service
+```
 
+9. Now we need to configure theHive. We need to ensure theHive user and group have access to a file path
+```bash
+chown -R thehive:theehive /opt/thp
+```
+10. Now we need to go into the config files:
+```bash
+nano /etc/thehive/application.conf
+```
+- Changed the hostname default ip to public ip of the server
+- Changed the application.baseUrl to the public ip of the server
+- Save and exit the config
+11. Now start theHive:
+```bash
+systemctl start thehive
+```
+```bash
+systemctl enable thehive
+```
+```bash
+systemctl status thehive
+```
+- Ensure all 3 services are running
+- You'll want to navigate to: http://IP_ADDRESS:9000
 
+![theHive](https://i.imgur.com/RTReWi6.png)
