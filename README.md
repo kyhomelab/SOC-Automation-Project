@@ -41,6 +41,8 @@ curl -sO https://packages.wazuh.com/4.7/wazuh-install.sh && sudo bash ./wazuh-in
 ![Wazuh](https://i.imgur.com/bV9bXSR.png) <br>
 
 ## TheHive
+> Configure a VM with at least 4cores of cpu. With ElasticSearch you aren't able to start the service if you dont have enough cpu. I reconfigured 4 vms trying to fix this.
+
 1. Same first step of creating Ubuntu VM with same configurations
 2. Connected to the Ubuntu instance through SSH using Azure CLI
 3. Changed root password and ran updates
