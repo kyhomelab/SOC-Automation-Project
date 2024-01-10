@@ -140,4 +140,17 @@ systemctl status thehive
 - Ensure all 3 services are running
 - You'll want to navigate to: http://IP_ADDRESS:9000
 
-![theHive](https://i.imgur.com/RTReWi6.png)
+<img src="https://i.imgur.com/RTReWi6.png" width="45%" height="45%">
+
+## Configuring Dashboards
+1. Navigating to the Wazuh Dashboard and logging in (I recommend doing this on the Windows VM)
+2. Click on Add Agent and you should get this page here:
+<br> <img src="https://i.imgur.com/0fZuzN8.png" width="45%" height="45%"> <br>
+- Choose Windows > Enter Wazuh Public Server Address > and you will get a command to run in powershell (example):
+```bash
+Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.7.1-1.msi -OutFile ${env.tmp}\wazuh-agent; msiexec.exe /i ${env.tmp}\wazuh-agent /q WAZUH_MANAGER='1.1.1.1' WAZUH_AGENT_NAME='mydfir' WAZUH_REGISTRATION_SERVER='1.1.1.1'
+```
+- Run this in the Windows 10 powershell with admin privileges followed by:
+```bash
+net start wazuhsvc
+```
