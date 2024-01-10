@@ -81,4 +81,27 @@ sudo apt-get update
 sudo apt-get install -y thehive
 ```
 <br>
-5. Going into **nano /etc/cassandra/cassandra.yaml**, Im changing * *listen_address, rpc_address, and seed_provider > seeds** all to the public ip of the server
+
+5. Going into "nano /etc/cassandra/cassandra.yaml", Im changing "listen_address, rpc_address, and seed_provider > seeds" all to the public ip of the server
+6. Restart the server using:
+```bash
+systemctl stop cassandra.service
+```
+```bash
+rm -rf /var/lib/cassandra/*
+```
+```bash
+systemctl start cassandra.service
+```
+<br>
+
+7. Now to configure Elastic Search which will query data. We need to go to the config files:
+```bash
+nano /etc/elasticsearch/elasticsearch.yml
+```
+8. Within the config, uncommented * *cluster name, node.name, network host (changed it to public ip of server)* *. Save config and exit. Run cmd to start it:
+```bash
+systemctl start elasticsearch
+```
+
+
