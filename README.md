@@ -5,6 +5,8 @@ Goal is to create a Wazuh Instance with SOAR Integration along with case managem
 - [Draw.io](draw.io)
 - [Wazuh](https://wazuh.com/)
 - [TheHive](https://thehive-project.org/)
+- [Shuffle](https://shuffler.io/)
+- [Virus Total](https://www.virustotal.com/gui/home/upload)
 - [Windows 10 using Soc Analyst Project](https://github.com/kyhomelab/SOC-Lab/tree/main)
 - [Microsoft Azure]
 
@@ -156,3 +158,37 @@ net start wazuhsvc
 ```
 - Now when I go back to the dashboard it shows a connection, and I can see this dashboard:
 <br> <img src="https://i.imgur.com/qDmbJyT.png" width="45%" height="45%"> <br>
+> The dashboard is typically blank but this is running on my [SOC Lab](https://github.com/kyhomelab/SOC-Lab/tree/main) so theres events already)
+- Utilizing [Mimikatz](https://github.com/gentilkiwi/mimikatz/releases/tag/2.2.0-20220919) I'm going to set up custom alerts
+3. After downloading Mimikatz, and extracting it, I use powershell to run it. Wazuh picks up the event shown here:
+<br> <img src="https://i.imgur.com/YZG1sIH.png" width="45%" height="45%"> <br>
+4. From the Home Dashbolard go to the dropdown arrow > Management > Rules > Manage Rules Files > Custom Rules > Edit (pencil icon) > and paste in this rule above **</group>** :
+  ```bash
+  <rule id="100003" level="15">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.originalFileName" type="pcre2">(?i)mimikatz\.exe</field>
+    <description>Mimikatz Usage Detected</description>
+    <mitre>
+      <id>T1003</id>
+    </mitre>
+  </rule>
+  ```
+- After saving and reataring the mananger, I restart Mimikatz, go to the dashboard and now it has a description and event ID:
+<br> <img src="https://i.imgur.com/ukqYkPK.png" width="45%" height="45%"> <br>
+
+## Shuffle
+1. Naviagting to [Shuffle](https://shuffler.io/) I create an account, and create a new workflow
+2. Utilizing a webhook, and the URI, I will add it to the Wazuh CLI utilizing this line:
+```bash
+<integration>
+  <name>shuffle</name>
+  <hook_url>WEBHOOK_URL</hook_url>
+  <rule_id>100003</rule_id>
+  <alert_format>json</alert_format>
+</integration>
+```
+- After, I restart the services, stop and restart mimikatz, and looking on Shuffle, it comes through:
+<br> <img src="https://i.imgur.com/snIP8fE.png" width="45%" height="45%"> <br>
+3. Created an account on [Virus Total](https://www.virustotal.com/gui/home/upload) and created an account to get my api
+4. Back to Shuffle, on my workflow I added the Virus Total app, authenticated using my API, and re ran the exececution so that Virus Total is now pushing
+> Setting up the SOAR platform I recieve the Wazuh alert, utilize Regex to parse out the 256 hash, and use Virus Total to check the reputation
