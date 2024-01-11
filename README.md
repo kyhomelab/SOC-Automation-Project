@@ -154,3 +154,5 @@ Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.7.1-
 ```bash
 net start wazuhsvc
 ```
+- Now when I go back to the dashboard it shows a connection, and I can see this dashboard:
+<br> <img src="https://i.imgur.com/qDmbJyT.png" width="45%" height="45%"> <br>
