@@ -192,3 +192,11 @@ net start wazuhsvc
 3. Created an account on [Virus Total](https://www.virustotal.com/gui/home/upload) and created an account to get my api
 4. Back to Shuffle, on my workflow I added the Virus Total app, authenticated using my API, and re ran the exececution so that Virus Total is now pushing
 > Setting up the SOAR platform I recieve the Wazuh alert, utilize Regex to parse out the 256 hash, and use Virus Total to check the reputation
+
+## theHive
+1. Log into theHive instance, I created a personal analyst account as well as a SOAR user account. I created an API Key for the SOAR user
+2. Back on Shuffle, I added theHive app to the workflow, added my API Key as well as the public IP of theHive
+   - The action I set was for an alert with a custom date, description, summary, tags, and title
+   - Running the workflow again, it successfully goes through all the way to theHive and I get this Alert:
+<br> <img src="https://i.imgur.com/zLlTz0R.png" width="45%" height="45%"> <br>
+<br> <img src="https://i.imgur.com/qokbn1o.png" width="45%" height="45%"> <br>
