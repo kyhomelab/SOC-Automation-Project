@@ -8,7 +8,7 @@ Goal is to create a Wazuh Instance with SOAR Integration along with case managem
 - [Shuffle](https://shuffler.io/)
 - [Virus Total](https://www.virustotal.com/gui/home/upload)
 - [Windows 10 using Soc Analyst Project](https://github.com/kyhomelab/SOC-Lab/tree/main)
-- [Microsoft Azure]
+- [Microsoft Azure](https://azure.microsoft.com/en-us)
 
 
 Here is a diagram of the project
